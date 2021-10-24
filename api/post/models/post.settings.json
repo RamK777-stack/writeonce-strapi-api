@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "Post",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true,
+      "private": false
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "createdBy": {
+      "type": "biginteger",
+      "required": true
+    },
+    "views": {
+      "type": "biginteger",
+      "default": "0"
+    }
+  }
+}
