@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/drafts",
+      "handler": "drafts.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/drafts/count",
+      "handler": "drafts.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/drafts/:id",
+      "handler": "drafts.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/drafts",
+      "handler": "drafts.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/drafts/:id",
+      "handler": "drafts.createOrUpdate",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/drafts/:id",
+      "handler": "drafts.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

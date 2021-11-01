@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/draft-blocks",
+      "handler": "draft-block.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/draft-blocks/count",
+      "handler": "draft-block.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/draft-blocks/:id",
+      "handler": "draft-block.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/draft-blocks",
+      "handler": "draft-block.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/draft-blocks/:id",
+      "handler": "draft-block.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/draft-blocks/:id",
+      "handler": "draft-block.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

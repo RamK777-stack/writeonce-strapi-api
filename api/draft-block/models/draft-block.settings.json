@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "draft_blocks",
+  "info": {
+    "name": "DraftBlocks",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "description": {
+      "type": "text"
+    },
+    "tag": {
+      "type": "string"
+    },
+    "draft": {
+      "model": "drafts",
+      "via": "draft_blocks"
+    }
+  }
+}
