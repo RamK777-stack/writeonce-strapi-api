@@ -552,6 +552,9 @@
                 "confirmationToken": {
                   "type": "string"
                 },
+                "loginToken": {
+                  "type": "string"
+                },
                 "confirmed": {
                   "type": "boolean"
                 },
@@ -560,6 +563,15 @@
                 },
                 "role": {
                   "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                },
+                "tokenExpiresAt": {
+                  "type": "string"
+                },
+                "isProfileUpdated": {
+                  "type": "boolean"
                 },
                 "created_by": {
                   "type": "string"

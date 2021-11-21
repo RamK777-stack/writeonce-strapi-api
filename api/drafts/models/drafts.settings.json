@@ -17,7 +17,8 @@
     },
     "draft_blocks": {
       "via": "draft",
-      "collection": "draft-block"
+      "collection": "draft-block",
+      "dominant": true
     }
   }
 }

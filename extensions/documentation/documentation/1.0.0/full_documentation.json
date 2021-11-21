@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/01/2021 10:58:59 PM"
+    "x-generation-date": "11/21/2021 11:38:25 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3248,6 +3248,134 @@
         }
       }
     },
+    "/auth/send-login-link": {
+      "post": {
+        "deprecated": false,
+        "description": "Reset user password with a code (resetToken)",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "UsersPermissions - User"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login-link": {
+      "get": {
+        "deprecated": false,
+        "description": "Validate a login token",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "UsersPermissions - User"
+        ],
+        "parameters": []
+      }
+    },
     "/auth/email-confirmation": {
       "get": {
         "deprecated": false,
@@ -3994,6 +4122,9 @@
             "type": "integer",
             "default": "0"
           },
+          "markdown": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -4019,6 +4150,9 @@
           "views": {
             "type": "integer",
             "default": "0"
+          },
+          "markdown": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -4122,6 +4256,9 @@
                 "confirmationToken": {
                   "type": "string"
                 },
+                "loginToken": {
+                  "type": "string"
+                },
                 "confirmed": {
                   "type": "boolean"
                 },
@@ -4130,6 +4267,15 @@
                 },
                 "role": {
                   "type": "string"
+                },
+                "token": {
+                  "type": "string"
+                },
+                "tokenExpiresAt": {
+                  "type": "string"
+                },
+                "isProfileUpdated": {
+                  "type": "boolean"
                 },
                 "created_by": {
                   "type": "string"
@@ -4243,6 +4389,16 @@
                 "type": "string"
               }
             }
+          },
+          "token": {
+            "type": "string"
+          },
+          "tokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isProfileUpdated": {
+            "type": "boolean"
           }
         }
       },
@@ -4274,6 +4430,9 @@
           "confirmationToken": {
             "type": "string"
           },
+          "loginToken": {
+            "type": "string"
+          },
           "confirmed": {
             "type": "boolean",
             "default": false
@@ -4284,6 +4443,16 @@
           },
           "role": {
             "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "tokenExpiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isProfileUpdated": {
+            "type": "boolean"
           },
           "created_by": {
             "type": "string"

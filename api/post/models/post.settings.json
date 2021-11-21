@@ -28,6 +28,9 @@
     "views": {
       "type": "biginteger",
       "default": "0"
+    },
+    "markdown": {
+      "type": "text"
     }
   }
 }

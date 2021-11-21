@@ -538,6 +538,9 @@
             "type": "integer",
             "default": "0"
           },
+          "markdown": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -563,6 +566,9 @@
           "views": {
             "type": "integer",
             "default": "0"
+          },
+          "markdown": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
