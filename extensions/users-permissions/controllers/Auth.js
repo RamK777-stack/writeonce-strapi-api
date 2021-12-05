@@ -35,6 +35,11 @@ const emailTemplate = {
   },
 };
 
+const template = (layout, data) => {
+  const compiledObject = _.template(layout);
+  return compiledObject(data);
+};
+
 module.exports = {
   async callback(ctx) {
     const provider = ctx.params.provider || "local";
@@ -660,33 +665,36 @@ module.exports = {
 
   async loginLink(ctx) {
     const { loginToken } = ctx.query;
-
     const { user: userService, jwt: jwtService } =
       strapi.plugins["users-permissions"].services;
 
     if (_.isEmpty(loginToken)) {
       return ctx.badRequest("token.invalid");
     }
-    const user = await userService.fetch({ loginToken }, []);
-
+    const user = await strapi
+      .query("user", "users-permissions")
+      .findOne({ loginToken }, [
+        "user",
+        "users-permissions",
+        "user_profile",
+        "role",
+      ]);
     if (!user) {
       return ctx.badRequest("token.invalid");
     }
 
-    await userService.edit({ id: user.id }, { loginToken: null });
-
     ctx.send({
       jwt: jwtService.issue({ id: user.id }),
-      user: sanitizeEntity(user, {
+      user: sanitizeEntity(user.toJSON ? user.toJSON() : user, {
         model: strapi.query("user", "users-permissions").model,
       }),
     });
+
+    await userService.edit({ id: user.id }, { loginToken: null });
   },
 
-  async sendLoginLinkEmail(user) {
+  async sendLoginLinkEmail(user, redirectURI) {
     const loginToken = crypto.randomBytes(20).toString("hex");
-
-    console.log("loginToken", loginToken);
 
     const { user: userService, jwt: jwtService } =
       strapi.plugins["users-permissions"].services;
@@ -697,39 +705,18 @@ module.exports = {
       console.log("Error updating login token", e);
     }
 
-    console.log("loginToken updated", loginToken);
-
-    const pluginStore = await strapi.store({
-      environment: "",
-      type: "plugin",
-      name: "users-permissions",
-    });
-
-    console.log("pluginStore", pluginStore);
-
     try {
-      // const settings = await pluginStore
-      //   .get({ key: "email" })
-      //   .then((storeEmail) => storeEmail["email_login"].options);
-      const settings = emailTemplate.options;
+      const settings = _.cloneDeep(emailTemplate.options);
 
-      console.log("settings", settings);
-
-      settings.message = await strapi.plugins[
-        "users-permissions"
-      ].services.userspermissions.template(settings.message, {
-        URL: `${getAbsoluteServerUrl(strapi.config)}/auth/login-link`,
+      settings.message = template(settings.message, {
+        URL: `${redirectURI}`,
         USER: user,
         CODE: loginToken,
       });
 
-      console.log("settings.message", settings);
-
       settings.object = await strapi.plugins[
         "users-permissions"
       ].services.userspermissions.template(settings.object, { USER: user });
-
-      console.log("settings.object", settings);
 
       await strapi.plugins["email"].services.email.send({
         to: user.email,
@@ -770,11 +757,8 @@ module.exports = {
       return ctx.badRequest("blocked.user");
     }
 
-    console.log(user);
-    console.log(params);
-
     try {
-      await this.sendLoginLinkEmail(user);
+      await this.sendLoginLinkEmail(user, params.redirectURI);
       ctx.send({
         email: user.email,
         sent: true,
@@ -782,5 +766,46 @@ module.exports = {
     } catch (err) {
       return ctx.badRequest(null, err);
     }
+  },
+
+  async refreshToken(ctx) {
+    const { token } = ctx.request.body;
+    const currentTime = Date.now();
+    try {
+      console.log(token);
+      const payload = await strapi.plugins[
+        "users-permissions"
+      ].services.jwt.verify(token);
+      const { id, exp } = payload;
+      console.log(payload, exp * 1000, currentTime);
+      if (exp * 1000 < currentTime) {
+        return {
+          jwt: strapi.plugins["users-permissions"].services.jwt.issue({
+            id: id,
+          }),
+        };
+      }
+      return { jwt: token };
+    } catch (e) {
+      console.log(e);
+      return ctx.badRequest("Invalid token");
+    }
+  },
+
+  async userDetails(ctx) {
+    const user = ctx.state.user;
+    console.log(user);
+    if (!user) {
+      return ctx.badRequest(null, [
+        { messages: [{ id: "No authorization header was found" }] },
+      ]);
+    }
+    const userdetails = await strapi.query("user", "users-permissions").findOne({
+      email: user.email,
+    });
+    const sanitizedUser = sanitizeEntity(userdetails, {
+      model: strapi.query("user", "users-permissions").model,
+    });
+    return sanitizedUser;
   },
 };

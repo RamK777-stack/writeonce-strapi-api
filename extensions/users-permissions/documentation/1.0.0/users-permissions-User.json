@@ -604,6 +604,77 @@
         }
       }
     },
+    "/auth/refresh-token": {
+      "post": {
+        "deprecated": false,
+        "description": "Refresh token",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "UsersPermissions - User"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/auth/send-login-link": {
       "post": {
         "deprecated": false,
@@ -1106,6 +1177,59 @@
         "parameters": []
       }
     },
+    "/auth/details": {
+      "get": {
+        "deprecated": false,
+        "description": "Retrieve the logged in user information",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersPermissionsUser"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "UsersPermissions - User"
+        ],
+        "parameters": []
+      }
+    },
     "/users/{id}": {
       "get": {
         "deprecated": false,
@@ -1379,15 +1503,69 @@
               }
             }
           },
-          "token": {
-            "type": "string"
-          },
-          "tokenExpiresAt": {
-            "type": "string",
-            "format": "date-time"
-          },
           "isProfileUpdated": {
             "type": "boolean"
+          },
+          "user_profile": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "mobile": {
+                "type": "string"
+              },
+              "countryCode": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "twitterProfileId": {
+                "type": "string"
+              },
+              "githubProfileId": {
+                "type": "string"
+              },
+              "bio": {
+                "type": "string"
+              },
+              "websiteURL": {
+                "type": "string"
+              },
+              "linkedinProdileId": {
+                "type": "string"
+              },
+              "tagline": {
+                "type": "string"
+              },
+              "user": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -1433,15 +1611,11 @@
           "role": {
             "type": "string"
           },
-          "token": {
-            "type": "string"
-          },
-          "tokenExpiresAt": {
-            "type": "string",
-            "format": "date-time"
-          },
           "isProfileUpdated": {
             "type": "boolean"
+          },
+          "user_profile": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

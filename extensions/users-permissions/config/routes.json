@@ -76,7 +76,10 @@
       "handler": "UsersPermissions.getEmailTemplate",
       "config": {
         "policies": [
-          ["admin::hasPermissions", ["plugins::users-permissions.email-templates.read"]]
+          [
+            "admin::hasPermissions",
+            ["plugins::users-permissions.email-templates.read"]
+          ]
         ]
       }
     },
@@ -86,7 +89,10 @@
       "handler": "UsersPermissions.updateEmailTemplate",
       "config": {
         "policies": [
-          ["admin::hasPermissions", ["plugins::users-permissions.email-templates.update"]]
+          [
+            "admin::hasPermissions",
+            ["plugins::users-permissions.email-templates.update"]
+          ]
         ]
       }
     },
@@ -96,7 +102,10 @@
       "handler": "UsersPermissions.getAdvancedSettings",
       "config": {
         "policies": [
-          ["admin::hasPermissions", ["plugins::users-permissions.advanced-settings.read"]]
+          [
+            "admin::hasPermissions",
+            ["plugins::users-permissions.advanced-settings.read"]
+          ]
         ]
       }
     },
@@ -106,7 +115,10 @@
       "handler": "UsersPermissions.updateAdvancedSettings",
       "config": {
         "policies": [
-          ["admin::hasPermissions", ["plugins::users-permissions.advanced-settings.update"]]
+          [
+            "admin::hasPermissions",
+            ["plugins::users-permissions.advanced-settings.update"]
+          ]
         ]
       }
     },
@@ -124,7 +136,10 @@
       "handler": "UsersPermissions.getProviders",
       "config": {
         "policies": [
-          ["admin::hasPermissions", ["plugins::users-permissions.providers.read"]]
+          [
+            "admin::hasPermissions",
+            ["plugins::users-permissions.providers.read"]
+          ]
         ]
       }
     },
@@ -135,7 +150,10 @@
       "handler": "UsersPermissions.updateProviders",
       "config": {
         "policies": [
-          ["admin::hasPermissions", ["plugins::users-permissions.providers.update"]]
+          [
+            "admin::hasPermissions",
+            ["plugins::users-permissions.providers.update"]
+          ]
         ]
       }
     },
@@ -274,6 +292,20 @@
     },
     {
       "method": "POST",
+      "path": "/auth/refresh-token",
+      "handler": "Auth.refreshToken",
+      "config": {
+        "policies": ["plugins::users-permissions.ratelimit"],
+        "prefix": "",
+        "description": "Refresh token",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User"
+        }
+      }
+    },
+    {
+      "method": "POST",
       "path": "/auth/send-login-link",
       "handler": "Auth.sendLoginLink",
       "config": {
@@ -356,6 +388,21 @@
       "method": "GET",
       "path": "/users/me",
       "handler": "User.me",
+      "config": {
+        "policies": [],
+        "prefix": "",
+        "description": "Retrieve the logged in user information",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User",
+          "actionType": "findOne"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/auth/details",
+      "handler": "Auth.userDetails",
       "config": {
         "policies": [],
         "prefix": "",

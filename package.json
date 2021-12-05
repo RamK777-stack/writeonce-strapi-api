@@ -11,6 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "htmlparser2": "^7.2.0",
     "knex": "0.21.18",
     "lodash": "^4.17.21",
     "pg": "^8.7.1",

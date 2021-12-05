@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_profiles",
+  "info": {
+    "name": "userProfile"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "twitterProfileId": {
+      "type": "string"
+    },
+    "githubProfileId": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "text"
+    },
+    "websiteURL": {
+      "type": "text"
+    },
+    "linkedinProdileId": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "user": {
+      "via": "user_profile",
+      "plugin": "users-permissions",
+      "model": "user"
+    }
+  }
+}

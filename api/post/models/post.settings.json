@@ -21,16 +21,30 @@
       "type": "text",
       "required": true
     },
-    "createdBy": {
-      "type": "biginteger",
-      "required": true
-    },
     "views": {
       "type": "biginteger",
       "default": "0"
     },
     "markdown": {
       "type": "text"
+    },
+    "synopsis": {
+      "type": "string"
+    },
+    "likes": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "comments": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "author": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "reading_time": {
+      "type": "string"
     }
   }
 }

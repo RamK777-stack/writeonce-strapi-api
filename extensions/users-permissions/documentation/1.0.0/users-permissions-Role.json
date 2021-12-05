@@ -564,14 +564,11 @@
                 "role": {
                   "type": "string"
                 },
-                "token": {
-                  "type": "string"
-                },
-                "tokenExpiresAt": {
-                  "type": "string"
-                },
                 "isProfileUpdated": {
                   "type": "boolean"
+                },
+                "user_profile": {
+                  "type": "string"
                 },
                 "created_by": {
                   "type": "string"
