@@ -45,6 +45,10 @@
     },
     "reading_time": {
       "type": "string"
+    },
+    "bookmarks": {
+      "via": "post",
+      "collection": "bookmarks"
     }
   }
 }

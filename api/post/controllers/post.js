@@ -44,7 +44,7 @@ const parseHtml = (html) => {
 
 module.exports = {
   find: async (ctx) => {
-    let populate = ["author", "author.user_profile"];
+    let populate = ["author", "author.user_profile", "bookmarks"];
     let post = await strapi.services.post.find({}, populate);
     const sanitizedUser = sanitizeEntity(post, {
       model: strapi.models.post,
@@ -64,10 +64,22 @@ module.exports = {
         "author.user_profile.firstName",
         "author.user_profile.lastName",
         "author.user_profile.websiteURL",
+        "bookmarks",
+        "bookmarks.id",
+        "bookmarks.userId",
       ],
     });
     const result = removeAuthorFields(sanitizedUser);
-    const arr = Object.keys(result).map((key) => result[key]);
+    const arr = Object.keys(result).map((key) => {
+      const bookMark = result[key].bookmarks.find((i) => i.userId == user?.id);
+      let obj = {
+        ...result[key],
+        bookMarkId: bookMark?.id,
+        isBookMarked: bookMark ? true : false,
+      };
+      obj = _.omit(obj, "bookmarks");
+      return obj;
+    });
     return arr;
   },
 

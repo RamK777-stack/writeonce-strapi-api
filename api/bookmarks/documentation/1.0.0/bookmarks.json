@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/posts": {
+    "/bookmarks": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find all the bookmarks's records",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve bookmarks document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Post"
+                    "$ref": "#/components/schemas/Bookmarks"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Post"
+          "Bookmarks"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new record",
+        "description": "Create a new bookmarks record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve bookmarks document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/Bookmarks"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Post"
+          "Bookmarks"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPost"
+                "$ref": "#/components/schemas/NewBookmarks"
               }
             }
           }
         }
       }
     },
-    "/posts/count": {
+    "/bookmarks/count": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Retrieve the number of bookmarks documents",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve bookmarks document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Post"
+          "Bookmarks"
         ],
         "parameters": []
       }
     },
-    "/posts/{id}": {
+    "/bookmarks/{id}": {
       "get": {
         "deprecated": false,
-        "description": "",
+        "description": "Find one bookmarks record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve bookmarks document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/Bookmarks"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Post"
+          "Bookmarks"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a record",
+        "description": "Update a single bookmarks record",
         "responses": {
           "200": {
-            "description": "response",
+            "description": "Retrieve bookmarks document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Post"
+                  "$ref": "#/components/schemas/Bookmarks"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Post"
+          "Bookmarks"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPost"
+                "$ref": "#/components/schemas/NewBookmarks"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a record",
+        "description": "Delete a single bookmarks record",
         "responses": {
           "200": {
-            "description": "deletes a single record based on the ID supplied",
+            "description": "deletes a single bookmarks based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Post"
+          "Bookmarks"
         ],
         "parameters": [
           {
@@ -514,84 +514,61 @@
   },
   "components": {
     "schemas": {
-      "Post": {
+      "Bookmarks": {
         "required": [
-          "id",
-          "title",
-          "description"
+          "id"
         ],
         "properties": {
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
+          "userId": {
+            "type": "integer"
           },
-          "description": {
-            "type": "string"
-          },
-          "views": {
-            "type": "integer",
-            "default": "0"
-          },
-          "markdown": {
-            "type": "string"
-          },
-          "synopsis": {
-            "type": "string"
-          },
-          "likes": {
-            "type": "integer",
-            "default": "0"
-          },
-          "comments": {
-            "type": "integer",
-            "default": "0"
-          },
-          "author": {
+          "post": {
             "required": [
               "id",
-              "username",
-              "email"
+              "title",
+              "description"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "username": {
+              "title": {
                 "type": "string"
               },
-              "email": {
+              "description": {
                 "type": "string"
               },
-              "provider": {
+              "views": {
+                "type": "integer"
+              },
+              "markdown": {
                 "type": "string"
               },
-              "password": {
+              "synopsis": {
                 "type": "string"
               },
-              "resetPasswordToken": {
+              "likes": {
+                "type": "integer"
+              },
+              "comments": {
+                "type": "integer"
+              },
+              "author": {
                 "type": "string"
               },
-              "confirmationToken": {
+              "reading_time": {
                 "type": "string"
               },
-              "loginToken": {
-                "type": "string"
+              "bookmarks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "isProfileUpdated": {
-                "type": "boolean"
-              },
-              "user_profile": {
+              "published_at": {
                 "type": "string"
               },
               "created_by": {
@@ -602,84 +579,19 @@
               }
             }
           },
-          "reading_time": {
-            "type": "string"
-          },
-          "bookmarks": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "userId": {
-                  "type": "integer"
-                },
-                "post": {
-                  "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "published_at": {
             "type": "string",
             "format": "date-time"
           }
         }
       },
-      "NewPost": {
-        "required": [
-          "title",
-          "description"
-        ],
+      "NewBookmarks": {
         "properties": {
-          "title": {
+          "userId": {
+            "type": "integer"
+          },
+          "post": {
             "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "views": {
-            "type": "integer",
-            "default": "0"
-          },
-          "markdown": {
-            "type": "string"
-          },
-          "synopsis": {
-            "type": "string"
-          },
-          "likes": {
-            "type": "integer",
-            "default": "0"
-          },
-          "comments": {
-            "type": "integer",
-            "default": "0"
-          },
-          "author": {
-            "type": "string"
-          },
-          "reading_time": {
-            "type": "string"
-          },
-          "bookmarks": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "published_at": {
             "type": "string",
@@ -697,7 +609,7 @@
   },
   "tags": [
     {
-      "name": "Post"
+      "name": "Bookmarks"
     }
   ]
 }
