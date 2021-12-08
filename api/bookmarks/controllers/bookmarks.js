@@ -38,6 +38,7 @@ module.exports = {
     const sanitizedResult = sanitizeEntity(bookmarks, {
       model: strapi.models.bookmarks,
       includeFields: [
+        "id",
         "userId",
         "created_at",
         "updated_at",
@@ -56,7 +57,11 @@ module.exports = {
     });
     const result = removeAuthorFields(sanitizedResult);
     const arr = Object.keys(result).map((key) => {
-      let obj = { ...result[key], ...result[key].post };
+      let obj = {
+        ...result[key],
+        ...result[key].post,
+        bookMarkId: result[key].id,
+      };
       obj = _.omit(obj, "post");
       return obj;
     });

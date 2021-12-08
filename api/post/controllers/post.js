@@ -44,6 +44,7 @@ const parseHtml = (html) => {
 
 module.exports = {
   find: async (ctx) => {
+    const user = ctx.state?.user;
     let populate = ["author", "author.user_profile", "bookmarks"];
     let post = await strapi.services.post.find({}, populate);
     const sanitizedUser = sanitizeEntity(post, {
