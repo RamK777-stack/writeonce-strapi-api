@@ -49,6 +49,9 @@
     "bookmarks": {
       "via": "post",
       "collection": "bookmarks"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

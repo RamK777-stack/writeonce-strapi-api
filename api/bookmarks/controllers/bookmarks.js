@@ -50,6 +50,7 @@ module.exports = {
         "post.likes",
         "post.comments",
         "post.reading_time",
+        "post.slug",
         "post.author.user_profile.firstName",
         "post.author.user_profile.lastName",
         "post.author.user_profile.websiteURL",

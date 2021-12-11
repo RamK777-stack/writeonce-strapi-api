@@ -568,6 +568,9 @@
                   "type": "string"
                 }
               },
+              "slug": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

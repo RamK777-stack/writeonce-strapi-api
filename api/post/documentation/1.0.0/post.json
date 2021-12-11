@@ -633,6 +633,9 @@
               }
             }
           },
+          "slug": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -680,6 +683,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "slug": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

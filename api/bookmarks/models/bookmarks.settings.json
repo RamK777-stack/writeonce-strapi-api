@@ -17,8 +17,8 @@
       "required": false
     },
     "post": {
-      "model": "post",
-      "via": "bookmarks"
+      "via": "bookmarks",
+      "model": "post"
     }
   }
 }
