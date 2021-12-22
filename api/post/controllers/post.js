@@ -147,10 +147,11 @@ module.exports = {
     description = parseHtml(description);
     const synopsis = description.substring(0, 220) + "...";
     const reading_time = Math.round(description.length / 450);
+    const title = parseHtml(ctx.request.body.title);
     let slug = title.toLowerCase();
     slug = slug.replace(/\s+/g, "-") + `-${alphanumeric_unique()}`;
     ctx.request.body["synopsis"] = synopsis;
-    ctx.request.body["title"] = parseHtml(ctx.request.body.title);
+    ctx.request.body["title"] = title;
     ctx.request.body["slug"] = slug;
     ctx.request.body["reading_time"] =
       reading_time > 1 ? `${reading_time} Min` : "Less than 1 min";
