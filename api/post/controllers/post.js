@@ -56,9 +56,8 @@ const parseHtml = (html) => {
 module.exports = {
   find: async (ctx) => {
     const user = ctx.state?.user;
-    console.log(ctx.request.body, ";;;;;;;;;;;");
-    let populate = ["author", "author.user_profile", "bookmarks"];
-    let post = await strapi.services.post.find({}, populate);
+    let populate = ["author", "author.user_profile", "bookmarks", "hashtags"];
+    let post = await strapi.services.post.find(ctx.request.query, populate);
     const sanitizedUser = sanitizeEntity(post, {
       model: strapi.models.post,
       includeFields: [
@@ -81,6 +80,8 @@ module.exports = {
         "bookmarks",
         "bookmarks.id",
         "bookmarks.userId",
+        "hashtags.id",
+        "hashtags.name"
       ],
     });
     const result = removeAuthorFields(sanitizedUser);
@@ -99,7 +100,7 @@ module.exports = {
 
   findOne: async (ctx) => {
     const user = ctx.state?.user;
-    let populate = ["author", "author.user_profile", "bookmarks"];
+    let populate = ["author", "author.user_profile", "bookmarks", "hashtags"];
     let post = await strapi.services.post.find(
       { slug: ctx.params.id },
       populate
@@ -126,6 +127,8 @@ module.exports = {
         "bookmarks",
         "bookmarks.id",
         "bookmarks.userId",
+        "hashtags.id",
+        "hashtags.name",
       ],
     });
     const result = removeAuthorFields(sanitizedUser);

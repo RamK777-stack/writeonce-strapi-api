@@ -1,18 +1,18 @@
 {
   "paths": {
-    "/bookmarks": {
+    "/hashtags": {
       "get": {
         "deprecated": false,
-        "description": "Find all the bookmarks's records",
+        "description": "Find all the hashtags's records",
         "responses": {
           "200": {
-            "description": "Retrieve bookmarks document(s)",
+            "description": "Retrieve hashtags document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Bookmarks"
+                    "$ref": "#/components/schemas/Hashtags"
                   }
                 }
               }
@@ -51,7 +51,7 @@
         },
         "summary": "",
         "tags": [
-          "Bookmarks"
+          "Hashtags"
         ],
         "parameters": [
           {
@@ -194,14 +194,14 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new bookmarks record",
+        "description": "Create a new hashtags record",
         "responses": {
           "200": {
-            "description": "Retrieve bookmarks document(s)",
+            "description": "Retrieve hashtags document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Bookmarks"
+                  "$ref": "#/components/schemas/Hashtags"
                 }
               }
             }
@@ -239,7 +239,7 @@
         },
         "summary": "",
         "tags": [
-          "Bookmarks"
+          "Hashtags"
         ],
         "requestBody": {
           "description": "",
@@ -247,20 +247,20 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBookmarks"
+                "$ref": "#/components/schemas/NewHashtags"
               }
             }
           }
         }
       }
     },
-    "/bookmarks/count": {
+    "/hashtags/count": {
       "get": {
         "deprecated": false,
-        "description": "Retrieve the number of bookmarks documents",
+        "description": "Retrieve the number of hashtags documents",
         "responses": {
           "200": {
-            "description": "Retrieve bookmarks document(s)",
+            "description": "Retrieve hashtags document(s)",
             "content": {
               "application/json": {
                 "schema": {
@@ -306,22 +306,22 @@
         },
         "summary": "",
         "tags": [
-          "Bookmarks"
+          "Hashtags"
         ],
         "parameters": []
       }
     },
-    "/bookmarks/{id}": {
+    "/hashtags/{id}": {
       "get": {
         "deprecated": false,
-        "description": "Find one bookmarks record",
+        "description": "Find one hashtags record",
         "responses": {
           "200": {
-            "description": "Retrieve bookmarks document(s)",
+            "description": "Retrieve hashtags document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Bookmarks"
+                  "$ref": "#/components/schemas/Hashtags"
                 }
               }
             }
@@ -359,7 +359,7 @@
         },
         "summary": "",
         "tags": [
-          "Bookmarks"
+          "Hashtags"
         ],
         "parameters": [
           {
@@ -376,14 +376,14 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single bookmarks record",
+        "description": "Update a single hashtags record",
         "responses": {
           "200": {
-            "description": "Retrieve bookmarks document(s)",
+            "description": "Retrieve hashtags document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Bookmarks"
+                  "$ref": "#/components/schemas/Hashtags"
                 }
               }
             }
@@ -421,7 +421,7 @@
         },
         "summary": "",
         "tags": [
-          "Bookmarks"
+          "Hashtags"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +429,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewBookmarks"
+                "$ref": "#/components/schemas/NewHashtags"
               }
             }
           }
@@ -449,10 +449,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single bookmarks record",
+        "description": "Delete a single hashtags record",
         "responses": {
           "200": {
-            "description": "deletes a single bookmarks based on the ID supplied",
+            "description": "deletes a single hashtags based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +495,7 @@
         },
         "summary": "",
         "tags": [
-          "Bookmarks"
+          "Hashtags"
         ],
         "parameters": [
           {
@@ -514,7 +514,7 @@
   },
   "components": {
     "schemas": {
-      "Bookmarks": {
+      "Hashtags": {
         "required": [
           "id"
         ],
@@ -522,7 +522,10 @@
           "id": {
             "type": "string"
           },
-          "userId": {
+          "label": {
+            "type": "string"
+          },
+          "createdBy": {
             "type": "integer"
           },
           "post": {
@@ -594,9 +597,12 @@
           }
         }
       },
-      "NewBookmarks": {
+      "NewHashtags": {
         "properties": {
-          "userId": {
+          "label": {
+            "type": "string"
+          },
+          "createdBy": {
             "type": "integer"
           },
           "post": {
@@ -618,7 +624,7 @@
   },
   "tags": [
     {
-      "name": "Bookmarks"
+      "name": "Hashtags"
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hashtags",
+  "info": {
+    "name": "hashtags",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "biginteger"
+    },
+    "post": {
+      "model": "post",
+      "via": "hashtags"
+    }
+  }
+}
