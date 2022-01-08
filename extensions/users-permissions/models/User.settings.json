@@ -70,6 +70,10 @@
     "user_profile": {
       "model": "user-profile",
       "via": "user"
+    },
+    "posts": {
+      "via": "author",
+      "collection": "post"
     }
   }
 }

@@ -620,6 +620,12 @@
               "user_profile": {
                 "type": "string"
               },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },

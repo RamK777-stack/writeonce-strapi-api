@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/01/2022 1:53:33 PM"
+    "x-generation-date": "01/08/2022 3:42:50 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5882,66 +5882,69 @@
           "createdBy": {
             "type": "integer"
           },
-          "post": {
-            "required": [
-              "id",
-              "title",
-              "description"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "views": {
-                "type": "integer"
-              },
-              "markdown": {
-                "type": "string"
-              },
-              "synopsis": {
-                "type": "string"
-              },
-              "likes": {
-                "type": "integer"
-              },
-              "comments": {
-                "type": "integer"
-              },
-              "author": {
-                "type": "string"
-              },
-              "reading_time": {
-                "type": "string"
-              },
-              "bookmarks": {
-                "type": "array",
-                "items": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "title",
+                "description"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "views": {
+                  "type": "integer"
+                },
+                "markdown": {
+                  "type": "string"
+                },
+                "synopsis": {
+                  "type": "string"
+                },
+                "likes": {
+                  "type": "integer"
+                },
+                "comments": {
+                  "type": "integer"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reading_time": {
+                  "type": "string"
+                },
+                "bookmarks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "hashtags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
                   "type": "string"
                 }
-              },
-              "slug": {
-                "type": "string"
-              },
-              "hashtags": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
               }
             }
           },
@@ -5959,8 +5962,11 @@
           "createdBy": {
             "type": "integer"
           },
-          "post": {
-            "type": "string"
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",
@@ -6054,6 +6060,12 @@
               "user_profile": {
                 "type": "string"
               },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -6112,8 +6124,11 @@
                 "createdBy": {
                   "type": "integer"
                 },
-                "post": {
-                  "type": "string"
+                "posts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "published_at": {
                   "type": "string"
@@ -6288,6 +6303,12 @@
               },
               "user_profile": {
                 "type": "string"
+              },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "created_by": {
                 "type": "string"
@@ -6467,6 +6488,12 @@
                 "user_profile": {
                   "type": "string"
                 },
+                "posts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -6643,6 +6670,72 @@
                 "type": "string"
               }
             }
+          },
+          "posts": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "title",
+                "description"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "views": {
+                  "type": "integer"
+                },
+                "markdown": {
+                  "type": "string"
+                },
+                "synopsis": {
+                  "type": "string"
+                },
+                "likes": {
+                  "type": "integer"
+                },
+                "comments": {
+                  "type": "integer"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "reading_time": {
+                  "type": "string"
+                },
+                "bookmarks": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "hashtags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -6693,6 +6786,12 @@
           },
           "user_profile": {
             "type": "string"
+          },
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "created_by": {
             "type": "string"

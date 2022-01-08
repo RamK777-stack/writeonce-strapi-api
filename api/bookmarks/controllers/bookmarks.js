@@ -31,7 +31,7 @@ module.exports = {
     const user = ctx.state.user;
     let populate = ["post.author", "post.author.user_profile"];
     let bookmarks = await strapi.services.bookmarks.find(
-      { userId: user.id },
+      { userId: user.id, ...ctx.request.query },
       populate
     );
 

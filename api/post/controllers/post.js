@@ -81,7 +81,7 @@ module.exports = {
         "bookmarks.id",
         "bookmarks.userId",
         "hashtags.id",
-        "hashtags.name"
+        "hashtags.label"
       ],
     });
     const result = removeAuthorFields(sanitizedUser);
@@ -128,7 +128,7 @@ module.exports = {
         "bookmarks.id",
         "bookmarks.userId",
         "hashtags.id",
-        "hashtags.name",
+        "hashtags.label",
       ],
     });
     const result = removeAuthorFields(sanitizedUser);

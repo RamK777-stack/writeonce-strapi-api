@@ -594,6 +594,12 @@
               "user_profile": {
                 "type": "string"
               },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "created_by": {
                 "type": "string"
               },
@@ -652,8 +658,11 @@
                 "createdBy": {
                   "type": "integer"
                 },
-                "post": {
-                  "type": "string"
+                "posts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "published_at": {
                   "type": "string"

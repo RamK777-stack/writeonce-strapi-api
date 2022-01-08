@@ -18,9 +18,9 @@
     "createdBy": {
       "type": "biginteger"
     },
-    "post": {
-      "model": "post",
-      "via": "hashtags"
+    "posts": {
+      "via": "hashtags",
+      "collection": "post"
     }
   }
 }

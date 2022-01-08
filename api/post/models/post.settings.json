@@ -41,7 +41,8 @@
     },
     "author": {
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "posts"
     },
     "reading_time": {
       "type": "string"
@@ -54,8 +55,9 @@
       "type": "string"
     },
     "hashtags": {
-      "via": "post",
-      "collection": "hashtags"
+      "via": "posts",
+      "collection": "hashtags",
+      "dominant": true
     }
   }
 }
