@@ -40,9 +40,9 @@
       "default": "0"
     },
     "author": {
+      "via": "posts",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "posts"
+      "model": "user"
     },
     "reading_time": {
       "type": "string"
@@ -58,6 +58,10 @@
       "via": "posts",
       "collection": "hashtags",
       "dominant": true
+    },
+    "post_likes": {
+      "via": "post",
+      "collection": "post-likes"
     }
   }
 }

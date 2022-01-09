@@ -1621,6 +1621,43 @@
                     "type": "string"
                   }
                 },
+                "post_likes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "post_likes": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "post": {
+                  "type": "string"
+                },
+                "reaction": {
+                  "type": "string"
+                },
+                "reacted_by": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -1684,6 +1721,12 @@
             "type": "string"
           },
           "posts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "post_likes": {
             "type": "array",
             "items": {
               "type": "string"

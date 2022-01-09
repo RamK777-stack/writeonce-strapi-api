@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "post_likes",
+  "info": {
+    "name": "PostLikes",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "post": {
+      "model": "post",
+      "via": "post_likes"
+    },
+    "reaction": {
+      "via": "post_likes",
+      "model": "reactions"
+    },
+    "reacted_by": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "post_likes"
+    }
+  }
+}

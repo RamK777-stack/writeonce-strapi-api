@@ -74,6 +74,10 @@
     "posts": {
       "via": "author",
       "collection": "post"
+    },
+    "post_likes": {
+      "via": "reacted_by",
+      "collection": "post-likes"
     }
   }
 }
