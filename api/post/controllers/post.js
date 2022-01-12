@@ -1,11 +1,19 @@
 "use strict";
 const { sanitizeEntity } = require("strapi-utils");
 const _ = require("lodash");
-var htmlparser = require("htmlparser2");
+const htmlparser = require("htmlparser2");
+const { createApi } = require("unsplash-js");
+const fetch = require('node-fetch');
+global.fetch = fetch;
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
  * to customize this controller
  */
+
+const unsplash = createApi({
+  accessKey: "91pcc4ZROABANATZb50Lj6z-IxqUI5LQJjAyGrDRsHo",
+  fetch: fetch,
+});
 
 const alphanumeric_unique = () => {
   return Math.random()
@@ -24,7 +32,7 @@ const removeAuthorFields = (entity) => {
     "author.updated_at",
     "author.user_profile.created_at",
     "author.user_profile.updated_at",
-  ]);
+  ]); 
 
   _.forEach(sanitizedValue, (value, key) => {
     if (_.isArray(value)) {
@@ -210,13 +218,39 @@ module.exports = {
   addReaction: async (ctx) => {
     let post = await strapi.services["post-likes"].findOne(ctx.request.body);
     if (!post) {
-      let post = await strapi.services.post.findOne({ id: ctx.request.body.post });
-      strapi.services.post.update({ id: ctx.request.body.post }, {likes: parseInt(post.likes) + 1});
+      let post = await strapi.services.post.findOne({
+        id: ctx.request.body.post,
+      });
+      strapi.services.post.update(
+        { id: ctx.request.body.post },
+        { likes: parseInt(post.likes) + 1 }
+      );
       return await strapi.services["post-likes"].create(ctx.request.body);
     } else {
-      let post = await strapi.services.post.findOne({ id: ctx.request.body.post });
-      strapi.services.post.update({ id: ctx.request.body.post }, {likes: parseInt(post.likes) - 1 !== -1 || post.likes});
+      let post = await strapi.services.post.findOne({
+        id: ctx.request.body.post,
+      });
+      strapi.services.post.update(
+        { id: ctx.request.body.post },
+        { likes: parseInt(post.likes) - 1 !== -1 || post.likes }
+      );
       return await strapi.services["post-likes"].delete(ctx.request.body);
+    }
+  },
+
+  unsplashImages: async (ctx) => {
+    console.log('ssssssssssssssssssssssssss')
+    try {
+      const result = await unsplash.search.getPhotos({
+        query: ctx.request.body.query || "nature",
+        page: 1,
+        perPage: 5,
+        orientation: "portrait",
+      });
+      console.log(result, ";;;;;;;;;;;;;;;;;;;;");
+      return result?.response;
+    } catch (e) {
+      console.log(e);
     }
   },
 };

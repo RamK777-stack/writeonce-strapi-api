@@ -55,6 +55,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/posts/searchunsplashimages",
+      "handler": "post.unsplashImages",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }
