@@ -13,8 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "post": {
-      "model": "post",
-      "via": "post_likes"
+      "via": "post_likes",
+      "model": "post"
     },
     "reaction": {
       "via": "post_likes",

@@ -63,6 +63,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/posts/uploadImages",
+      "handler": "post.uploadImage",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

@@ -62,6 +62,9 @@
     "post_likes": {
       "via": "post",
       "collection": "post-likes"
+    },
+    "coverImage": {
+      "type": "string"
     }
   }
 }

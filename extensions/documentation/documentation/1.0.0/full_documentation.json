@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/11/2022 10:57:44 PM"
+    "x-generation-date": "01/22/2022 4:52:21 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3217,6 +3217,77 @@
       }
     },
     "/posts/searchunsplashimages": {
+      "post": {
+        "deprecated": false,
+        "description": "Create a new record",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Post"
+        ],
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "foo": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/posts/uploadImages": {
       "post": {
         "deprecated": false,
         "description": "Create a new record",
@@ -6872,6 +6943,9 @@
                   "type": "string"
                 }
               },
+              "coverImage": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -7125,6 +7199,9 @@
                     "type": "string"
                   }
                 },
+                "coverImage": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -7234,6 +7311,9 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "coverImage": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"
@@ -7568,6 +7648,9 @@
               }
             }
           },
+          "coverImage": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7630,6 +7713,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "coverImage": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
@@ -8245,6 +8331,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "coverImage": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"

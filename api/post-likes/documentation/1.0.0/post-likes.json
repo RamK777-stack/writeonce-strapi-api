@@ -593,6 +593,9 @@
                   "type": "string"
                 }
               },
+              "coverImage": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

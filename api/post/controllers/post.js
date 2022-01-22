@@ -3,7 +3,8 @@ const { sanitizeEntity } = require("strapi-utils");
 const _ = require("lodash");
 const htmlparser = require("htmlparser2");
 const { createApi } = require("unsplash-js");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
+const { uploadFromURL } = require("../../utils");
 global.fetch = fetch;
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
@@ -32,7 +33,7 @@ const removeAuthorFields = (entity) => {
     "author.updated_at",
     "author.user_profile.created_at",
     "author.user_profile.updated_at",
-  ]); 
+  ]);
 
   _.forEach(sanitizedValue, (value, key) => {
     if (_.isArray(value)) {
@@ -109,6 +110,7 @@ module.exports = {
         "comments",
         "reading_time",
         "slug",
+        "coverImage",
         "author.user_profile.firstName",
         "author.user_profile.lastName",
         "author.user_profile.websiteURL",
@@ -163,6 +165,7 @@ module.exports = {
         "comments",
         "reading_time",
         "slug",
+        "coverImage",
         "author.user_profile.firstName",
         "author.user_profile.lastName",
         "author.user_profile.websiteURL",
@@ -239,18 +242,32 @@ module.exports = {
   },
 
   unsplashImages: async (ctx) => {
-    console.log('ssssssssssssssssssssssssss')
     try {
       const result = await unsplash.search.getPhotos({
         query: ctx.request.body.query || "nature",
         page: 1,
-        perPage: 5,
+        perPage: 10,
         orientation: "portrait",
       });
-      console.log(result, ";;;;;;;;;;;;;;;;;;;;");
       return result?.response;
     } catch (e) {
       console.log(e);
+    }
+  },
+
+  uploadImage: async (ctx) => {
+    const url = ctx.request.body.url;
+    const {
+      request: { files: { files } = {} },
+    } = ctx;
+    console.log(files,'lllllll')
+    console.log(ctx.request.body.url,'23333333333333')
+    try {
+      const result = await uploadFromURL(files?.path || ctx.request.body?.url);
+      return result;
+    } catch (e) {
+      console.log(e);
+      return new Error(e);
     }
   },
 };
