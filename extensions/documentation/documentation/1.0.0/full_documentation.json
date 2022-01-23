@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "01/22/2022 4:52:21 PM"
+    "x-generation-date": "01/23/2022 9:20:45 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -7014,6 +7014,9 @@
                   "type": "string"
                 }
               },
+              "createdBy": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -7096,6 +7099,72 @@
               }
             }
           },
+          "createdBy": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "loginToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "isProfileUpdated": {
+                "type": "boolean"
+              },
+              "user_profile": {
+                "type": "string"
+              },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "post_likes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -7112,6 +7181,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "createdBy": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

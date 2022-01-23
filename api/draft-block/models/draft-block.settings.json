@@ -19,8 +19,8 @@
       "type": "string"
     },
     "draft": {
-      "model": "drafts",
-      "via": "draft_blocks"
+      "via": "draft_blocks",
+      "model": "drafts"
     }
   }
 }

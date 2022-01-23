@@ -93,7 +93,15 @@ module.exports = {
   find: async (ctx) => {
     const user = ctx.state?.user;
     let populate = ["author", "author.user_profile", "bookmarks", "hashtags"];
-    let post = await strapi.services.post.find(ctx.request.query, populate);
+    let post = await strapi.services.post.find(
+      {
+        _sort: ctx.request.query?._sort,
+        _limit: ctx.request.query?._limit,
+        _start: ctx.request.query?._start,
+        title_contains: ctx.request.query?.search,
+      },
+      populate
+    );
     const sanitizedUser = sanitizeEntity(post, {
       model: strapi.models.post,
       includeFields: [
@@ -260,8 +268,6 @@ module.exports = {
     const {
       request: { files: { files } = {} },
     } = ctx;
-    console.log(files,'lllllll')
-    console.log(ctx.request.body.url,'23333333333333')
     try {
       const result = await uploadFromURL(files?.path || ctx.request.body?.url);
       return result;

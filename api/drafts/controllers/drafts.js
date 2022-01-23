@@ -2,6 +2,30 @@ const { parseMultipartData, sanitizeEntity } = require("strapi-utils");
 const _ = require("lodash");
 
 module.exports = {
+  find: async (ctx) => {
+    const user = ctx.state.user;
+    let drafts = await strapi.services.drafts.find({
+      ["createdBy.id"]: user.id,
+      _sort: ctx.request.query?._sort,
+      _limit: ctx.request.query?._limit,
+      _start: ctx.request.query?._start,
+      title_contains: ctx.request.query?.search,
+    });
+    const sanitizedResult = sanitizeEntity(drafts, {
+      model: strapi.models.drafts,
+      includeFields: [
+        "id",
+        "title",
+        "published_at",
+        "created_at",
+        "createdBy.id",
+        "createdBy.username",
+        "draft_blocks",
+      ],
+    });
+    return sanitizedResult;
+  },
+
   /**
    * Create a/an drafts record.
    *
@@ -19,11 +43,10 @@ module.exports = {
   },
 
   delete: async (ctx) => {
-    console.log(ctx.params,'22')
     await strapi.services["draft-block"].delete({
       draft: ctx.params.id,
     });
-    let drafts = strapi.services.drafts.delete({id: ctx.params.id});
+    let drafts = strapi.services.drafts.delete({ id: ctx.params.id });
     return drafts;
   },
 
