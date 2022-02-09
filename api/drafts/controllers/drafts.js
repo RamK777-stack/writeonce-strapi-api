@@ -32,12 +32,14 @@ module.exports = {
    * @return {Object}
    */
   create: async (ctx) => {
+    const user = ctx.state.user;
     const draftBlockPromise = ctx.request.body.draft_blocks.map((draft_block) =>
       strapi.services["draft-block"].create(draft_block)
     );
     let draftBlocks = await Promise.all(draftBlockPromise);
     draftBlocks = (draftBlocks && draftBlocks.map((block) => block.id)) || [];
     ctx.request.body["draft_blocks"] = draftBlocks;
+    ctx.request.body["createdBy"] = user?.id;
     let drafts = strapi.services.drafts.add(ctx.request.body);
     return drafts;
   },
