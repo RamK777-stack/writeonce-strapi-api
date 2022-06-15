@@ -1,4 +1,5 @@
  // strapi-api/config/database.js
+ require('dotenv').config()
  module.exports = ({ env }) => ({
   defaultConnection: "default",
   connections: {
