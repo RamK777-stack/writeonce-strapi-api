@@ -93,15 +93,20 @@ module.exports = {
   find: async (ctx) => {
     const user = ctx.state?.user;
     let populate = ["author", "author.user_profile", "bookmarks", "hashtags"];
-    let post = await strapi.services.post.find(
-      {
-        _sort: ctx.request.query?._sort,
-        _limit: ctx.request.query?._limit,
-        _start: ctx.request.query?._start,
-        title_contains: ctx.request.query?.search,
-      },
-      populate
-    );
+    let params = {
+      _sort: ctx.request.query?._sort || "created_at:desc",
+    };
+    if (ctx.request.query?._limit) {
+      params["_limit"] = ctx.request.query?._limit;
+    }
+    if (ctx.request.query?._start) {
+      params["_start"] = ctx.request.query?._start;
+    }
+    if (ctx.request.query?.search) {
+      params["title_contains"] = ctx.request.query?.search;
+    }
+
+    let post = await strapi.services.post.find(params, populate);
     const sanitizedUser = sanitizeEntity(post, {
       model: strapi.models.post,
       includeFields: [
